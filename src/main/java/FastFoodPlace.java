@@ -1,7 +1,7 @@
 import Model.Administrator;
 import Model.Cart;
-import Service.AdminService;
 import Service.CartService;
+import Service.LoginService;
 import Service.MenuService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.javalin.Javalin;
@@ -13,18 +13,18 @@ public class FastFoodPlace {
     public static void main(String[] args) throws SQLException {
         MenuService ms = new MenuService();
         CartService cs = new CartService();
-        AdminService ar = new AdminService();
+        LoginService as = new LoginService();
         Javalin app = Javalin.create(JavalinConfig::enableCorsForAllOrigins);
         app.start(9000);
         app.get("/view_menu/", ctx -> ctx.json(ms.getAllFoodItems()));
         app.put("/administrator_options/{productID}", ctx ->
             ctx.json(ms.updateAProduct(Integer.parseInt(ctx.pathParam("productID"))))
         );
-        app.get("administrator_options", ctx -> ctx.json(ar.getCredentials()));
+        app.get("administrator_options", ctx -> ctx.json(as.getCredentials()));
         app.post("administrator_options", ctx ->{
             ObjectMapper mapper = new ObjectMapper();
             Administrator info = mapper.readValue(ctx.body(), Administrator.class);
-            ar.addCredentials(info.getUsername(), info.getPassword());
+            as.addLogins(info.getUsername(), info.getPassword());
         });
 
         app.post("advanced_options", ctx -> {
