@@ -31,7 +31,7 @@ public class MenuRepository {
     public Menu updateMenu(Menu item){
         try{
             PreparedStatement stmt = c.prepareStatement("Update Menu Set product_name = 'Chana Masala', " +
-                    "product_category = 'Savory', product_price = 12.00, url = 'https://cookieandkate.com/images/2020/03/vegan-chana-masala-recipe-2.jpg' Where product_id = ?");
+                    "product_category = 'Savory', product_price = 12.00, url = 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fthegourmetgourmand.com%2Fwp-content%2Fuploads%2F2020%2F04%2Fchannamasala4-683x1024.jpg&f=1&nofb=1' Where product_id = ?");
             stmt.setInt(1, item.getProductID());
             stmt.executeUpdate();
         }catch(SQLException se){

@@ -22,6 +22,13 @@ public class Menu {
         this.productUrl = productUrl;
     }
 
+    public Menu(int productID, String productName, double productPrice, String productUrl) {
+        this.productID = productID;
+        this.productName = productName;
+        this.productPrice = productPrice;
+        this.productUrl = productUrl;
+    }
+
     public String getProductUrl() {
         return productUrl;
     }

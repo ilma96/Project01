@@ -34,11 +34,11 @@ public class CartRepository {
         List<Menu> getItems = new ArrayList<>();
         try{
             Statement cartStatement = c.createStatement();
-            ResultSet rs = cartStatement.executeQuery("select Menu.product_id, Menu.product_name, Menu.product_category, Menu.product_price, Menu.url from Menu inner join Cart on Menu.product_id = Cart.item_id");
+            ResultSet rs = cartStatement.executeQuery("select Menu.product_id, Menu.product_name, Menu.product_price, Menu.url from Menu inner join Cart on Menu.product_id = Cart.item_id");
 
             while(rs.next()) {
                 Menu displayFood = new Menu(rs.getInt("product_id"),
-                        rs.getString("product_name"), rs.getString("product_category"), rs.getDouble("product_price"), rs.getString("url"));
+                        rs.getString("product_name"), rs.getDouble("product_price"), rs.getString("url"));
                 getItems.add(displayFood);
             }
         }catch(SQLException se){
