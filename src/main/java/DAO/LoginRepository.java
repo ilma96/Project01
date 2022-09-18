@@ -27,8 +27,8 @@ public class LoginRepository {
         List<Administrator> itemExists = new ArrayList<>();
         try{
             Statement loginStatement = c.createStatement();
-            ResultSet rs = loginStatement.executeQuery("Select * From Logins l Where exists (Select * " +
-                    "From Administrator a Where a.username = l.username and a.password = l.password)");
+            ResultSet rs = loginStatement.executeQuery("Select * From Administrator a Where exists (Select * " +
+                    "From Logins l Where l.username = a.username and l.password = a.password)");
             // SQL statement to check if an item added in Cart exists in the Menu or not
             while(rs.next()) {
                 Administrator credentials = new Administrator(rs.getString("username"),
