@@ -6,8 +6,11 @@ import Service.CartService;
 import Service.MenuService;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
+
 import java.sql.SQLException;
+
 import static org.mockito.Mockito.never;
+
 public class FoodManiaTest {
 
         @Test
